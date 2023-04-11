@@ -1,0 +1,20 @@
+import requests
+from bs4 import BeautifulSoup
+from plyer import notification
+
+# Fetch Ethereum gas price from etherscan.io
+url = 'https://etherscan.io/gastracker'
+response = requests.get(url)
+soup = BeautifulSoup(response.content, 'html.parser')
+gas_price_elem = soup.find('span', {'id': 'gas-price'})
+gas_price = float(gas_price_elem.text)
+
+# Check if gas price is lower than 10 gwei
+if gas_price < 10:
+    # Send push notification
+    notification.notify(
+        title='Ethereum Gas Price Alert',
+        message=f'Gas price is currently {gas_price} gwei, which is lower than 10 gwei!',
+        app_icon=None,  # e.g. 'C:\\icon_32x32.ico'
+        timeout=10,  # seconds
+    )
