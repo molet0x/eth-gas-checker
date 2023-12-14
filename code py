@@ -14,7 +14,7 @@ if gas_price < 10:
     # Send push notification
     notification.notify(
         title='Ethereum Gas Price Alert',
-        message=f'Gas price is currently {gas_price} gwei, which is lower than 10 gwei!',
+        message=f'Gas price is currently {gas_price} gwei, which is lower than 10! gwei!',
         app_icon=None,  # e.g. 'C:\\icon_32x32.ico'
         timeout=10,  # seconds
     )
